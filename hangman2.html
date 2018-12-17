@@ -115,7 +115,13 @@ body {
     xhttp.open('GET', ah, true);
     xhttp.onload = function ()
         {   
-            var t = prompt("Please enter your name", "");
+            var t;
+            var mobile = (/iphone|ipad|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
+    if (mobile) {
+        t = prompt("Please enter your name", "");              
+    } else {
+            t = prompt("Please enter your name", ""); 
+    }
             if(this.readyState==4 && this.status==200)  
             {
                     y=0;
