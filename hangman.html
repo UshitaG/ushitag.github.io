@@ -89,7 +89,6 @@ body {
     //english
     //ah='http://api.themoviedb.org/3/discover/movie?api_key=8630fe62bee1eec057d0c3694dad551c&primary_release_year=2014&language=hi'
     //ah='https://api.themoviedb.org/3/discover/movie?api_key=8630fe62bee1eec057d0c3694dad551c&certification_country=IN&certification.lte=A&language=hi'
-
     //ah='https://api.themoviedb.org/3/movie/'+y+'?api_key=8630fe62bee1eec057d0c3694dad551c';
     xhttp.open('GET', ah, true);
     xhttp.onload = function ()
@@ -116,15 +115,12 @@ body {
                     output = document.getElementById("output");
                     man = document.getElementById("man");
                     guessInput = document.getElementById("letter");
-
                     man.innerHTML =  '<p class="text-danger"><b><center>You have ' + lives + ' lives remaining</center><b></p>';
                     output.innerHTML = '';
-
                     document.getElementById("letter").value = '';
                     guessButton = document.getElementById("guess");
                     guessInput.style.display = 'inline';
                     guessButton.style.display = 'inline';
-
                     /* set up display of letters in current word */
                     letters = document.getElementById("letters");
                     letters.innerHTML = '<li class="current-word text-primary"><b>CURRENT WORD<b></li>';
@@ -139,7 +135,6 @@ body {
                             else
                                 letter = '<li class="letter letter' + currentWord.charAt(i).toUpperCase() + '">' + currentWord.charAt(i).toUpperCase() + '</li>';
                             letters.insertAdjacentHTML('beforeend', letter);
-
                     }
                     hint.onclick=function()
                     {   
@@ -159,12 +154,9 @@ body {
                         },
                         function(data) {
                             var rnd = Math.floor(Math.random() * data.items.length);
-
                             var image_src = data.items[rnd]['media']['m'].replace("_m", "_b");
-
                             // $('body').css('background-image', "url('" + image_src + "')");
                             window.open(image_src);
-
                         });
                         }
                         else{
@@ -203,24 +195,19 @@ body {
                             output.innerHTML = messages.lose;
                             output.classList.add('error');
                         }
-
                         guessInput.style.display = guessButton.style.display = 'none';
                         guessInput.value = '';
                         var keys = Object.keys(localStorage);
                         i = keys.length;
-
                         while ( i-- ) {
                             var a=keys[i];
                              man.innerHTML +='<br><b><center>'+a+'='+localStorage.getItem( keys[i] )+'<b>';
                         }
-
                     }
                     document.getElementById("restart").onclick = setup;
-
             /* reset letter to guess on click */
                     guessInput.onclick = function () 
                     {
-
                         this.value = '';
                     };
                     document.getElementById('hangman').onsubmit = function (e) {
@@ -228,7 +215,6 @@ body {
                     output.innerHTML = '';
                     output.classList.remove('error', 'warning');
                     guess = guessInput.value.toUpperCase();
-
         /* does guess have a value? if yes continue, if no, error */
                     if (guess) 
                         {
@@ -246,22 +232,18 @@ body {
                                 {
                                     var lettersToShow;
                                     lettersToShow = document.querySelectorAll(".letter" + guess.toUpperCase());
-
                                     for (var i = 0; i < lettersToShow.length; i++) 
                                     {
                                         lettersToShow[i].classList.add("correct");
                                     }
-
                     /* check to see if letter appears multiple times */
                                     for (var j = 0; j < currentWord.length; j++) 
                                     {
                                         if (currentWord.charAt(j) === guess) 
                                         {
-
                                             numLettersMatched += 1;
                                         }
                                     }
-
                                     lettersMatched += guess;
                                     if (numLettersMatched == (currentWord.length)-y) 
                                     {
@@ -295,7 +277,6 @@ body {
                 }
             else
             {
-
                 ab();
             }
         }
@@ -303,13 +284,14 @@ body {
     }
      
         /* end config options */
-
 }   
-
+        /* choose a word */
+       // currentWord = words[Math.floor(Math.random() * words.length)];
+        /* make #man and #output blank, create vars for later access */
+        
+        /* make sure guess button is enabled */
         
        
-
-
     
 </script>
 </html>
